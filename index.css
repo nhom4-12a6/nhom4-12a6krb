@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CLB Học Sinh Lớp 12A6</title>
+    <style>
+        /* 1. Hiệu ứng nền chuyển động nhiều màu */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+         background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #FF6A88, #FF99AC, #85FFBD, #21D4FD);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 200vh;
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* 2. Bố cục chuẩn */
+        .container {
+            max-width: 1000px;
+            width: 90%;
+            margin: 50px auto;
+            text-align: center;
+        }
+
+        /* 3. Khung chữ to, rõ, màu sắc đẹp (Glassmorphism) */
+        .header-box {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+        }
+
+        p.subtitle {
+            font-size: 1.5rem;
+            font-weight: 300;
+        }
+
+        /* 4. Khu vực hoạt động */
+        .grid-layout {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            width: 100%;
+        }
+
+        .card {
+            background: rgba(0, 0, 0, 0.6);
+            padding: 25px;
+            border-radius: 15px;
+            transition: transform 0.3s ease;
+            border-left: 5px solid #ffeb3b;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        .card h3 {
+            color: #ffeb3b;
+            font-size: 1.8rem;
+            margin-top: 0;
+        }
+
+        /* Nút bấm */
+        .btn-join {
+            display: inline-block;
+            margin-top: 40px;
+            padding: 15px 40px;
+            background-color: #fff;
+            color: #e73c7e;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            transition: 0.3s;
+        }
+
+        .btn-join:hover {
+            background-color: #ffeb3b;
+            color: #333;
+            box-shadow: 0 0 20px rgba(255, 235, 59, 0.6);
+        }
+                .photo-frame {
+            background: rgba(300, 100, 100, 0,85); /* Viền trắng bán trong suốt */
+            padding: 12px; /* Tạo độ dày cho viền khung */
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2); /* Tạo bóng đổ */
+            transition: all 0.4s ease-in-out; /* Hiệu ứng mượt mà */
+            cursor: pointer;
+            overflow: hidden; /* Đảm bảo ảnh không tràn ra ngoài khi zoom */
+        }
+        /* Xử lý ảnh bên trong khung */
+        .photo-frame img {
+            width: 100%;
+            height: 250px; /* Chiều cao cố định để các khung đều nhau */
+            object-fit: cover; /* Ảnh tự cắt để lấp đầy khung mà không bị méo */
+            border-radius: 8px;
+            display: block;
+        }
+        body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+}
+
+.content {
+    padding: 20px;
+    flex: 1; /* Giúp đẩy footer xuống cuối trang */
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+{
+        margin: 0;
+        overflow: hidden;
+        background: linear-gradient(to bottom, #87CEEB, #f5deb3);
+    }
+
+    .leaf {
+        position: fixed;
+        top: -50px;
+        font-size: 24px;
+        animation: fall linear infinite;
+        user-select: none;
+    }
+
+    @keyframes fall {
+        0% {
+            transform: translateY(-50px) translateX(0) rotate(0deg);
+            opacity: 1;
+        }
+        100% {
+            transform: translateY(110vh) translateX(100px) rotate(360deg);
+            opacity: 0.8;
+        }
+    }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="header-box">
+
+            <h1>CLB Học Sinh Lớp 12A6</h1>
+            <p class="subtitle">Nơi đam mê tỏa sáng - Kết nối tài năng trẻ</p>
+        </div>
+
+        <div class="grid-layout">
+            <div class="card">
+                <h3>Ngày Quốc Tế Phụ Nữ 8/3</h3>
+             <a href="phần1.html">Đường Liên Kết</a>
+
+                <p>Lời chúc 8/3 của tập thể lớp gửi đến cô giáo hoặc các bạn nữ cần sự chân thành, ấm áp và ý nghĩa. Nội dung nên tri ân công ơn dạy dỗ (với cô giáo) hoặc tôn vinh sự xinh đẹp, năng động (với các bạn nữ), tạo không khí vui vẻ, đoàn kết trong lớp học.</p>
+            </div>
+
+            <div class="card">
+                <h3>Hoạt Động Văn Nghệ</h3>
+                <a href="phần3.html">Đường Liên Kết</a>
+                <p>Văn nghệ lớp cấp 3 là khoảnh khắc kết nối tình bạn, lưu giữ thanh xuân rực rỡ qua tiếng hát, điệu múa. Những lời dẫn hay cần chân thành, cảm xúc, tôn vinh nỗ lực tập luyện của tập thể và gợi nhớ kỷ niệm mái trường, thầy cô, bạn bè, biến sân khấu thành không gian lan tỏa năng lượng trẻ và tình đoàn kết</p>
+            </div>
+
+            <div class="card">
+                <h3>Hoạt động 26/3</h3>
+                <a href="phần2.html">Đường Liên Kết</a>
+                <p>Hoạt động chơi trò chơi dân gian ở cấp 3 giúp giảm áp lực học tập, kết nối tình bạn và lưu giữ nét đẹp văn hóa truyền thống. Đây là sân chơi lành mạnh giúp rèn luyện thể chất, sự nhanh nhẹn và tinh thần đồng đội qua các trò như kéo co, cướp cờ, nhảy bao bố, mang lại tiếng cười rộn rã, gắn kết mọi ngườ</p>
+            </div>
+        </div>
+         <div class="photo-frame">
+            <img src="gen-h-z7134928789877_f4f43c1cca88e16b7a288aa79ac42aba.jpg" alt="Hoạt động 6">
+            <div class="caption">Kỉ Niệm Đáng Nhớ</div>
+        </div>
+    </div>
+    <div class="photo-frame">
+            <img src="gen-h-z6444217403042_be3c2f286162ad94c81c72d438232510.jpg" alt="Hoạt động 6">
+            <div class="caption">Kỉ Niệm Đáng Nhớ</div>
+        </div>
+
+        <footer>
+        <p>Bản quyền thuộc về CLB lớp 12A6 - Năm học 2025-2026</p>
+        <p>Liên Hệ:0345685650</p>
+    </footer>
+    <script>
+function createLeaf() {
+    const leaf = document.createElement("div");
+    leaf.classList.add("leaf");
+    leaf.innerHTML = "🍂";
+
+    leaf.style.left = Math.random() * window.innerWidth + "px";
+    leaf.style.animationDuration = (5 + Math.random() * 5) + "s";
+    leaf.style.fontSize = (20 + Math.random() * 20) + "px";
+
+    document.body.appendChild(leaf);
+
+    setTimeout(() => {
+        leaf.remove();
+    }, 10000);
+}
+
+setInterval(createLeaf, 500);
+</script>
+
+
+   
+</body>
+</html>
