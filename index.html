@@ -5,19 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CLB Học Sinh Lớp 12A6</title>
     <style>
-        
         body {
             margin: 0;
             padding: 0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #FF6A88, #FF99AC, #85FFBD, #21D4FD, #7FFF00, #FFD700);
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #FF6A88, #FF99AC, #85FFBD, #21D4FD, #7FFF00, #FFD700);
             background-size: 400% 400%;
             animation: gradient 15s ease infinite;
             color: #fff;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            min-height: 200vh;
+            min-height: 100vh; /* Đảm bảo body ít nhất cao bằng màn hình */
         }
 
         @keyframes gradient {
@@ -26,15 +24,14 @@ background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #FF6A88, #FF99AC,
             100% { background-position: 0% 50%; }
         }
 
-        
         .container {
             max-width: 1000px;
             width: 90%;
             margin: 50px auto;
             text-align: center;
+            flex: 1; /* Đẩy footer xuống dưới cùng */
         }
 
-        
         .header-box {
             background: rgba(255, 255, 255, 0.2);
             backdrop-filter: blur(10px);
@@ -58,12 +55,12 @@ background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #FF6A88, #FF99AC,
             font-weight: 300;
         }
 
-        
         .grid-layout {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 20px;
             width: 100%;
+            margin-bottom: 40px;
         }
 
         .card {
@@ -72,6 +69,7 @@ background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #FF6A88, #FF99AC,
             border-radius: 15px;
             transition: transform 0.3s ease;
             border-left: 5px solid #ffeb3b;
+            text-align: left;
         }
 
         .card:hover {
@@ -85,163 +83,248 @@ background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #FF6A88, #FF99AC,
             margin-top: 0;
         }
 
-        /* Nút bấm */
-        .btn-join {
-            display: inline-block;
-            margin-top: 40px;
-            padding: 15px 40px;
-            background-color: #fff;
-            color: #e73c7e;
+        .card a {
+            color: #21D4FD;
             text-decoration: none;
             font-weight: bold;
-            border-radius: 50px;
-            font-size: 1.2rem;
-            transition: 0.3s;
+            display: inline-block;
+            margin-bottom: 10px;
         }
 
-        .btn-join:hover {
-            background-color: #ffeb3b;
-            color: #333;
-            box-shadow: 0 0 20px rgba(255, 235, 59, 0.6);
-        }
-                .photo-frame {
-            background: rgba(300, 100, 100, 0,85); 
+        /* Khung ảnh */
+        .photo-frame {
+            background: rgba(255, 255, 255, 0.2); 
             padding: 12px; 
             border-radius: 12px;
             box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-            transition: all 0.4s ease-in-out; 
-            cursor: pointer;
-            overflow: hidden; 
+            margin: 20px auto;
+            max-width: 800px;
         }
         
         .photo-frame img {
             width: 100%;
-            height: 250px; 
-            object-fit: cover; 
+            height: auto; 
             border-radius: 8px;
             display: block;
         }
-        body {
-    font-family: Arial, sans-serif;
+
+        .caption { margin-top: 10px; font-weight: bold; }
+
+        /* CSS CHO CHÂN TRANG */
+        footer {
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(15px);
+            padding: 50px 0 20px 0;
+            width: 100%;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            margin-top: auto;
+        }
+
+        .footer-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            padding: 0 30px;
+        }
+
+        .footer-col {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 30px;
+        }
+
+        .footer-col h3 {
+            font-size: 1.4rem;
+            color: #ffeb3b;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            border-bottom: 2px solid #fff;
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+
+        .footer-col p, .footer-col ul {
+            font-size: 1rem;
+            color: #e0e0e0;
+            line-height: 1.8;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-col ul { list-style: none; }
+
+        .footer-col ul li a {
+            color: #fff;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .footer-col ul li a:hover {
+            color: #ffeb3b;
+            padding-left: 8px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: #bbb;
+        }
+
+        /* Hiệu ứng lá rơi */
+        .leaf {
+            position: fixed;
+            top: -50px;
+            pointer-events: none;
+            z-index: 9999;
+            animation: fall linear forwards;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(-50px) translateX(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(110vh) translateX(100px) rotate(360deg); opacity: 0.3; }
+        }
+        /* Căn chỉnh khung tiêu đề để chứa ảnh và chữ */
+.header-box {
+    display: flex; /* Kích hoạt flexbox */
+    align-items: center; /* Căn giữa theo chiều dọc */
+    justify-content: center; /* Căn giữa theo chiều ngang */
+    gap: 30px; /* Khoảng cách giữa ảnh và nội dung chữ */
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    padding: 30px 40px;
+    border-radius: 20px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    margin-bottom: 30px;
+}
+
+/* Định dạng cho ảnh trong tiêu đề */
+.header-logo {
+    width: 120px; /* Độ rộng của ảnh */
+    height: 120px; /* Chiều cao của ảnh */
+    object-fit: cover; /* Giữ tỉ lệ ảnh không bị móp */
+    border-radius: 50%; /* Làm ảnh hình tròn (nếu là logo) */
+    border: 3px solid #ffeb3b; /* Viền vàng cho nổi bật */
+    box-shadow: 0 0 15px rgba(255, 235, 59, 0.5);
+}
+
+/* Căn lề chữ khi có ảnh bên cạnh */
+.header-text {
+    text-align: left; /* Để chữ căn lề trái so với ảnh */
+}
+
+/* Điều chỉnh tiêu đề chính khi đi kèm ảnh */
+h1 {
+    font-size: 2.8rem; /* Giảm nhẹ kích thước để cân đối với ảnh */
     margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
 
-header {
-    background-color: #333;
-    color: white;
-    text-align: center;
-    padding: 1rem;
-}
-
-.content {
-    padding: 20px;
-    flex: 1; 
-}
-
-footer {
-    background-color: #333;
-    color: white;
-    text-align: center;
-    padding: 10px;
-    position: relative;
-    bottom: 0;
-    width: 100%;
-}
-{
-        margin: 0;
-        overflow: hidden;
-        background: linear-gradient(to bottom, #87CEEB, #f5deb3);
+/* Đáp ứng thiết kế cho điện thoại */
+@media (max-width: 600px) {
+    .header-box {
+        flex-direction: column; /* Chuyển thành hàng dọc trên điện thoại */
+        text-align: center;
     }
-
-    .leaf {
-        position: fixed;
-        top: -50px;
-        font-size: 24px;
-        animation: fall linear infinite;
-        user-select: none;
+    .header-text {
+        text-align: center;
     }
-
-    @keyframes fall {
-        0% {
-            transform: translateY(-50px) translateX(0) rotate(0deg);
-            opacity: 1;
-        }
-        100% {
-            transform: translateY(110vh) translateX(100px) rotate(360deg);
-            opacity: 0.8;
-        }
+    .header-logo {
+        width: 100px;
+        height: 100px;
     }
-
+}
     </style>
 </head>
 <body>
-
-    <div class="container">
-        <div class="header-box">
-
-            <h1>CLB Học Sinh Lớp 12A6</h1>
-            <p class="subtitle">Nơi đam mê tỏa sáng - Kết nối tài năng trẻ</p>
+            <div class="header-box">
+    <img src="gen-h-z6444217403042_be3c2f286162ad94c81c72d438232510.jpg" alt="Logo CLB" class="header-logo"> 
+    <div class="header-text">
+        <h1>CLB Học Sinh Lớp 12A6</h1>
+        <p class="subtitle">Nơi đam mê tỏa sáng - Kết nối tài năng trẻ</p>
+    </div>
+</div>
         </div>
 
         <div class="grid-layout">
             <div class="card">
                 <h3>Ngày Nhà Giáo Việt Nam 20/11</h3>
-             <a href="phần1.html">Đường Liên Kết</a>
-
+                <a href="phần1.html">Đường Liên Kết →</a>
                 <p>"Nhân ngày Nhà giáo Việt Nam 20/11, em xin kính chúc thầy/cô luôn mạnh khỏe, bình an, giữ mãi ngọn lửa nhiệt huyết với nghề và tiếp tục truyền cảm hứng cho thật nhiều thế hệ học trò".</p>
             </div>
 
             <div class="card">
                 <h3>Hoạt Động Văn Nghệ</h3>
-                <a href="phần3.html">Đường Liên Kết</a>
-                <p>Văn nghệ lớp cấp 3 là khoảnh khắc kết nối tình bạn, lưu giữ thanh xuân rực rỡ qua tiếng hát, điệu múa. Những lời dẫn hay cần chân thành, cảm xúc, tôn vinh nỗ lực tập luyện của tập thể và gợi nhớ kỷ niệm mái trường, thầy cô, bạn bè, biến sân khấu thành không gian lan tỏa năng lượng trẻ và tình đoàn kết</p>
+                <a href="phần3.html">Đường Liên Kết →</a>
+                <p>Văn nghệ lớp cấp 3 là khoảnh khắc kết nối tình bạn, lưu giữ thanh xuân rực rỡ qua tiếng hát, điệu múa. Những lời dẫn hay cần chân thành, cảm xúc, tôn vinh nỗ lực tập luyện của tập thể.</p>
             </div>
 
             <div class="card">
                 <h3>Hoạt động 26/3</h3>
-                <a href="phần2.html">Đường Liên Kết</a>
-                <p>Hoạt động chơi trò chơi dân gian ở cấp 3 giúp giảm áp lực học tập, kết nối tình bạn và lưu giữ nét đẹp văn hóa truyền thống. Đây là sân chơi lành mạnh giúp rèn luyện thể chất, sự nhanh nhẹn và tinh thần đồng đội qua các trò như kéo co, cướp cờ, nhảy bao bố, mang lại tiếng cười rộn rã, gắn kết mọi ngườ</p>
+                <a href="phần2.html">Đường Liên Kết →</a>
+                <p>Hoạt động chơi trò chơi dân gian giúp giảm áp lực học tập, kết nối tình bạn và lưu giữ nét đẹp văn hóa truyền thống qua các trò chơi như kéo co, nhảy bao bố.</p>
             </div>
         </div>
-         <div class="photo-frame">
-            <img src="gen-h-z7134928789877_f4f43c1cca88e16b7a288aa79ac42aba.jpg" alt="Hoạt động 6">
+
+        <div class="photo-frame">
+            <img src="gen-h-z7134928789877_f4f43c1cca88e16b7a288aa79ac42aba.jpg" alt="Kỉ Niệm">
             <div class="caption">Kỉ Niệm Đáng Nhớ</div>
         </div>
     </div>
-    <div class="photo-frame">
-            <img src="gen-h-z6444217403042_be3c2f286162ad94c81c72d438232510.jpg" alt="Hoạt động 6">
-            <div class="caption">Kỉ Niệm Đáng Nhớ</div>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-col">
+                <h3>Về Chúng Tôi</h3>
+                <p>Lớp 12A6 niên khóa 2025-2026 trường THPT Krông Bông. Đoàn kết là sức mạnh, thành công là mục tiêu.</p>
+            </div>
+
+            <div class="footer-col">
+                <h3>Liên Kết</h3>
+                <ul>
+                    <li><a href="index.html">Trang Chủ</a></li>
+                    <li><a href="#">Thư Viện Ảnh</a></li>
+                    <li><a href="#">Lịch Hoạt Động</a></li>
+                    <li><a href="#">Thành Viên</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-col">
+                <h3>Liên Hệ</h3>
+                <p>📍 Địa chỉ: Lớp 12A6 (2025-2026)</p>
+                <p>📧 Email: ht810393@gmail.com</p>
+                <p>📞 Hotline: 0345.685.650</p>
+            </div>
         </div>
-
-        <footer>
-        <p>Bản quyền thuộc về CLB lớp 12A6 - Năm học 2025-2026</p>
-        <p>Liên Hệ:0345685650</p>
+        <div class="footer-bottom">
+            <p>&copy; 2026 CLB Học Sinh 12A6 - THPT Krông Bông.</p>
+        </div>
     </footer>
+
     <script>
+        function createLeaf() {
+            const leaf = document.createElement("div");
+            leaf.classList.add("leaf");
+            leaf.innerHTML = "🍁";
 
-function createLeaf() {
-    const leaf = document.createElement("div");
-    leaf.classList.add("leaf");
-    leaf.innerHTML = "🍁";
+            leaf.style.left = Math.random() * window.innerWidth + "px";
+            leaf.style.animationDuration = (5 + Math.random() * 5) + "s";
+            leaf.style.fontSize = (20 + Math.random() * 20) + "px";
 
+            document.body.appendChild(leaf);
 
-    leaf.style.left = Math.random() * window.innerWidth + "px";
-    leaf.style.animationDuration = (5 + Math.random() * 5) + "s";
-    leaf.style.fontSize = (20 + Math.random() * 20) + "px";
+            setTimeout(() => {
+                leaf.remove();
+            }, 10000);
+        }
 
-    document.body.appendChild(leaf);
-
-    setTimeout(() => {
-        leaf.remove();
-    }, 10000);
-}
-
-setInterval(createLeaf, 500);
-</script>
- 
+        setInterval(createLeaf, 600);
+    </script>
 </body>
 </html>
