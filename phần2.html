@@ -3,19 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thư Viện Ảnh Hoạt Động</title>
+    <title>Thư Viện Ảnh Hoạt Động - THPT Krông Bông</title>
     <style>
-        /* 1. Nền màu sắc chuyển động (Tương tự trang chủ nhưng đổi tông màu một chút) */
+        /* 1. Cấu trúc chung của trang */
         body {
             margin: 0;
-            padding: 20px;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            /* Sử dụng dải màu tươi sáng phù hợp với ảnh */
+            padding: 0;
+            font-family: 'Segoe UI', Arial, sans-serif;
             background: linear-gradient(-45deg, #FF9A8B, #FF6A88, #FF99AC, #85FFBD, #21D4FD, #7FFF00);
             background-size: 400% 400%;
             animation: gradientBG 18s ease infinite;
             color: #fff;
-            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Giúp chân trang luôn ở dưới cùng nếu nội dung ít */
         }
 
         @keyframes gradientBG {
@@ -29,76 +30,140 @@
             text-align: center;
             font-size: 3rem;
             text-transform: uppercase;
-            margin-bottom: 40px;
+            margin: 40px 0;
             text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
             letter-spacing: 2px;
         }
 
-        /* 2. Bố cục Lưới (Grid) cho thư viện ảnh */
+        /* 2. Bố cục Lưới ảnh */
         .gallery-container {
             display: grid;
-            /* Tự động điều chỉnh số cột tùy theo kích thước màn hình */
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px; /* Khoảng cách giữa các ảnh */
+            gap: 25px;
             max-width: 1200px;
             margin: 0 auto;
+            padding: 0 20px;
+            flex: 1; /* Đẩy footer xuống dưới */
         }
 
-        /* 3. Thiết kế Khung ảnh */
+        /* Khung ảnh */
         .photo-frame {
-            background: rgba(255, 255, 255, 0.85); /* Viền trắng bán trong suốt */
-            padding: 12px; /* Tạo độ dày cho viền khung */
+            background: rgba(255, 255, 255, 0.85);
+            padding: 12px;
             border-radius: 12px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.2); /* Tạo bóng đổ */
-            transition: all 0.4s ease-in-out; /* Hiệu ứng mượt mà */
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            transition: all 0.4s ease-in-out;
             cursor: pointer;
-            overflow: hidden; /* Đảm bảo ảnh không tràn ra ngoài khi zoom */
+            overflow: hidden;
         }
 
-        /* Hiệu ứng khi di chuột vào khung ảnh */
         .photo-frame:hover {
-            transform: scale(1.05) translateY(-10px); /* Phóng to nhẹ và bay lên */
-            box-shadow: 0 15px 30px rgba(0,0,0,0.4); /* Bóng đổ sâu hơn */
-            background: rgba(255, 255, 255, 1); /* Viền trở nên trắng rõ */
-            z-index: 10;
+            transform: scale(1.05) translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+            background: rgba(255, 255, 255, 1);
         }
 
-        /* Xử lý ảnh bên trong khung */
         .photo-frame img {
             width: 100%;
-            height: 250px; /* Chiều cao cố định để các khung đều nhau */
-            object-fit: cover; /* Ảnh tự cắt để lấp đầy khung mà không bị méo */
+            height: 250px;
+            object-fit: cover;
             border-radius: 8px;
             display: block;
         }
 
-        /* Chú thích ảnh (tùy chọn) */
-        .caption {
-            text-align: center;
-            color: #333;
-            font-weight: 600;
-            margin-top: 10px;
-            font-size: 1.1rem;
-        }
-
-        /* Nút quay lại trang chủ */
+        /* Nút quay lại */
         .back-btn {
             display: block;
             width: max-content;
             margin: 40px auto;
-            padding: 10px 30px;
+            padding: 12px 35px;
             background: rgba(0,0,0,0.5);
             color: white;
             text-decoration: none;
             border-radius: 30px;
             border: 2px solid white;
             transition: 0.3s;
+            font-weight: bold;
         }
+
         .back-btn:hover {
              background: white;
              color: #FF6A88;
         }
 
+        /* 3. CSS CHO CHÂN TRANG (Đã cân chỉnh) */
+        .footer {
+            background: rgba(0, 0, 0, 0.7); /* Tăng độ đậm để dễ đọc chữ */
+            backdrop-filter: blur(15px);
+            padding: 50px 0 20px 0;
+            width: 100%;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            margin-top: auto; /* Luôn nằm dưới cùng */
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            padding: 0 30px;
+        }
+
+        .footer-col {
+            flex: 1;
+            min-width: 280px;
+            margin-bottom: 30px;
+        }
+
+        .footer-col h3 {
+            font-size: 1.4rem;
+            color: #ffeb3b;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            border-bottom: 2px solid #fff;
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+
+        .footer-col p, .footer-col ul {
+            font-size: 1rem;
+            color: #e0e0e0;
+            line-height: 1.8;
+            padding: 0;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li a {
+            color: #fff;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .footer-col ul li a:hover {
+            color: #ffeb3b;
+            padding-left: 8px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: #bbb;
+        }
+        body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Đảm bảo body cao ít nhất bằng màn hình */
+}
+.footer {
+    margin-top: auto; /* Tự động đẩy footer xuống đáy */
+}
     </style>
 </head>
 <body>
@@ -108,25 +173,52 @@
     <div class="gallery-container">
         <div class="photo-frame">
             <img src="gen-h-z6444214954131_fe8d1d5a7f3b6eaeddd116f53dec96e3.jpg" alt="Hoạt động 1">
-            <div class="caption"></div>
         </div>
 
         <div class="photo-frame">
             <img src="gen-h-z6443209782042_5eeb11b1e31c0b212d6bddf920d8f70d.jpg" alt="Hoạt động 2">
-            <div class="caption"></div>
         </div>
 
         <div class="photo-frame">
             <img src="gen-h-z6444218060177_aead239272a1a52414813581848289fd.jpg" alt="Hoạt động 3">
-            <div class="caption"></div>
-        </div>
-        <div class="photo-frame">
-            <img src="gen-h-z6444217403042_be3c2f286162ad94c81c72d438232510.jpg" alt="Hoạt động 3">
-            <div class="caption"></div>
         </div>
 
+        <div class="photo-frame">
+            <img src="gen-h-z6444217403042_be3c2f286162ad94c81c72d438232510.jpg" alt="Hoạt động 4">
+        </div>
+    </div>
+
+    <a href="index.html" class="back-btn">← Quay lại Trang Chủ</a>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-col">
+                <h3>Về Chúng Tôi</h3>
+                <p>CLB Trường THPT Krông Bông là nơi thắp sáng đam mê, kết nối những trái tim nhiệt huyết và tạo dựng kỷ niệm thời học sinh rực rỡ.</p>
+            </div>
+
+            <div class="footer-col">
+                <h3>Liên Kết</h3>
+                <ul>
+                    <li><a href="index.html">Trang Chủ</a></li>
+                    <li><a href="#">Thư Viện Ảnh</a></li>
+                    <li><a href="#">Lịch Hoạt Động</a></li>
+                    <li><a href="#">Thành Viên</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>Liên Hệ</h3>
+                <p>📍 Địa chỉ: Lớp 12A6 2025-2026</p>
+                <p>📧 Email: ht810393@gamil.com</p>
+                <p>📞 Hotline: 0345685650</p>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2026 CLB THPT Krông Bông. Thiết kế bởi MR.Huy</p>
+        </div>
+    </footer>
 
 </body>
-
 </html>
-
