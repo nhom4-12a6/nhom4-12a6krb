@@ -5,17 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thư Viện Ảnh Hoạt Động</title>
     <style>
-        /* 1. Nền màu sắc chuyển động (Tương tự trang chủ nhưng đổi tông màu một chút) */
-        body {
+        /* Đảm bảo toàn bộ trang chiếm hết chiều cao màn hình */
+        html, body {
+            height: 100%;
             margin: 0;
-            padding: 20px;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column; /* Chuyển bố cục sang dạng cột */
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            /* Sử dụng dải màu tươi sáng phù hợp với ảnh */
             background: linear-gradient(-45deg, #FF9A8B, #FF6A88, #FF99AC, #85FFBD, #21D4FD);
             background-size: 400% 400%;
             animation: gradientBG 18s ease infinite;
             color: #fff;
-            min-height: 100vh;
         }
 
         @keyframes gradientBG {
@@ -24,7 +27,12 @@
             100% { background-position: 0% 50%; }
         }
 
-        /* Tiêu đề trang */
+        /* Phần nội dung chính sẽ giãn ra để đẩy footer xuống dưới */
+        .main-content {
+            flex: 1 0 auto;
+            padding: 20px;
+        }
+
         h1.gallery-title {
             text-align: center;
             font-size: 3rem;
@@ -34,54 +42,54 @@
             letter-spacing: 2px;
         }
 
-        /* 2. Bố cục Lưới (Grid) cho thư viện ảnh */
         .gallery-container {
             display: grid;
-            /* Tự động điều chỉnh số cột tùy theo kích thước màn hình */
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px; /* Khoảng cách giữa các ảnh */
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
             max-width: 1200px;
             margin: 0 auto;
         }
 
-        /* 3. Thiết kế Khung ảnh */
         .photo-frame {
-            background: rgba(255, 255, 255, 0.85); /* Viền trắng bán trong suốt */
-            padding: 12px; /* Tạo độ dày cho viền khung */
+            background: rgba(255, 255, 255, 0.85);
+            padding: 12px;
             border-radius: 12px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.2); /* Tạo bóng đổ */
-            transition: all 0.4s ease-in-out; /* Hiệu ứng mượt mà */
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            transition: all 0.4s ease-in-out;
             cursor: pointer;
-            overflow: hidden; /* Đảm bảo ảnh không tràn ra ngoài khi zoom */
+            overflow: hidden;
         }
 
-        /* Hiệu ứng khi di chuột vào khung ảnh */
         .photo-frame:hover {
-            transform: scale(1.05) translateY(-10px); /* Phóng to nhẹ và bay lên */
-            box-shadow: 0 15px 30px rgba(0,0,0,0.4); /* Bóng đổ sâu hơn */
-            background: rgba(255, 255, 255, 1); /* Viền trở nên trắng rõ */
-            z-index: 10;
+            transform: scale(1.05) translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+            background: rgba(255, 255, 255, 1);
         }
 
-        /* Xử lý ảnh bên trong khung */
         .photo-frame img {
             width: 100%;
-            height: 250px; /* Chiều cao cố định để các khung đều nhau */
-            object-fit: cover; /* Ảnh tự cắt để lấp đầy khung mà không bị méo */
+            height: 250px;
+            object-fit: cover;
             border-radius: 8px;
             display: block;
         }
 
-        /* Chú thích ảnh (tùy chọn) */
-        .caption {
-            text-align: center;
-            color: #333;
-            font-weight: 600;
-            margin-top: 10px;
-            font-size: 1.1rem;
+        .video-container {
+            position: relative;
+            width: 100%;
+            height: 250px; /* Khớp chiều cao với ảnh */
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            background: #000;
         }
 
-        /* Nút quay lại trang chủ */
+        .video-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
         .back-btn {
             display: block;
             width: max-content;
@@ -94,79 +102,96 @@
             border: 2px solid white;
             transition: 0.3s;
         }
+
         .back-btn:hover {
              background: white;
              color: #FF6A88;
         }
-        btn-join:hover {
-            background-color: #ffeb3b;
-            color: #333;
-            box-shadow: 0 0 20px rgba(255, 235, 59, 0.6);
-        }
-                .photo-frame {
-            background: rgba(300, 100, 100, 0,85); /* Viền trắng bán trong suốt */
-            padding: 12px; /* Tạo độ dày cho viền khung */
-            border-radius: 12px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.2); /* Tạo bóng đổ */
-            transition: all 0.4s ease-in-out; /* Hiệu ứng mượt mà */
-            cursor: pointer;
-            overflow: hidden; /* Đảm bảo ảnh không tràn ra ngoài khi zoom */
-        }
-        /* Xử lý ảnh bên trong khung */
-        .photo-frame img {
-            width: 100%;
-            height: 250px; /* Chiều cao cố định để các khung đều nhau */
-            object-fit: cover; /* Ảnh tự cắt để lấp đầy khung mà không bị méo */
-            border-radius: 8px;
-            display: block;
-        }
-         .video-container {
-    position: relative;
-    width: 100%;
-    padding-bottom: 56.25%;
-    height: 0;
-    overflow: hidden;
-    margin: 2rem 0;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-}
 
-.video-container iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border: none;
-    border-radius: 8px;
-}
+        /* Footer cố định ở dưới cùng */
+        footer {
+            flex-shrink: 0;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(15px);
+            padding: 40px 0 20px 0;
+            width: 100%;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center; /* Cân giữa chân trang */
+            text-align: center;
+            padding: 0 30px;
+        }
+
+        .footer-col h3 {
+            font-size: 1.4rem;
+            color: #ffeb3b;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .footer-col p {
+            font-size: 1rem;
+            color: #e0e0e0;
+            line-height: 1.6;
+            margin: 5px 0;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: #bbb;
+        }
     </style>
 </head>
 <body>
 
-    <h1 class="gallery-title">Khoảnh Khắc Hoạt Động CLB</h1>
+    <div class="main-content">
+        <h1 class="gallery-title">Khoảnh Khắc Hoạt Động CLB</h1>
 
-    <div class="gallery-container">
-        <div class="photo-frame">
-            <img src="gen-h-z6431836157570_6ba3937566658cbf51e94e26b1d93633.jpg" alt="Hoạt động 1">
-            <div class="caption"></div>
-        </div>
-
-        <div class="photo-frame">
-            <img src="gen-h-z7538592809964_046821cd4f9a3e5ede796fd0f90cf738.jpg" alt="Hoạt động 2">
-            <div class="caption"></div>
-        </div>
-        <div class="video-container">
-                <iframe width="560" height="315" src="vd6.mp4" title="Múa văn nghệ" allowfullscreen></iframe>
-            </div>
-        <div class="video-container">
-                <iframe width="560" height="315" src="vd3.mp4" title="Múa văn nghệ" allowfullscreen></iframe>
+        <div class="gallery-container">
+            <div class="photo-frame">
+                <img src="gen-h-z6431836157570_6ba3937566658cbf51e94e26b1d93633.jpg" alt="Hoạt động 1">
             </div>
 
+            <div class="photo-frame">
+                <img src="gen-h-z7538592809964_046821cd4f9a3e5ede796fd0f90cf738.jpg" alt="Hoạt động 2">
+            </div>
 
-    
+            <div class="video-container">
+                <iframe src="vd6.mp4" title="Múa văn nghệ" allowfullscreen></iframe>
+            </div>
+
+            <div class="video-container">
+                <iframe src="vd3.mp4" title="Múa văn nghệ" allowfullscreen></iframe>
+            </div>
+        </div>
+
+        <a href="file:///C:/hoatdongCLB12a6/index.html" class="back-btn">← Quay lại Trang Chủ</a>
+    </div>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-col">
+                <h3>Liên Hệ</h3>
+                <p>📍 Địa chỉ: Lớp 12A6 2025-2026</p>
+                <p>📧 Email: ht810393@gmail.com</p>
+                <p>📞 Hotline: 0345685650</p>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2026 CLB THPT Krông Bông. Thiết kế bởi MR.Huy</p>
+        </div>
+    </footer>
 
 </body>
-
 </html>
-
